@@ -2,7 +2,6 @@
 #include <Windows.h>
 #include <time.h>
 
-
 void randomColor() {
 	glColor3ub(rand() % 255, rand() % 255, rand() % 255);
 }
@@ -55,8 +54,8 @@ GLvoid DrawGLScene() {
 	glPopMatrix();
 
 	/*Поворот линии*/
+	randomColor();
 	glBegin(GL_LINES);
-		randomColor();
 		glVertex2f(-0.5, -0.5);
 		glVertex2f(0.5, -0.5);
 	glEnd();
@@ -64,7 +63,6 @@ GLvoid DrawGLScene() {
 	glPushMatrix();
 	glRotatef(angleA, 0, 0, 1);
 	glBegin(GL_LINES);
-		randomColor();
 		glVertex2f(-0.5, -0.5);
 		glVertex2f(0.5, -0.5);
 	glEnd();
@@ -90,30 +88,16 @@ GLvoid DrawGLScene() {
 	glPopMatrix();
 
 	/*Звезда линиями*/
-	glBegin(GL_LINES);
 	glColor3f(1, 1, 1);
-		glVertex2f(-0.3, 0.0);
-		glVertex2f(0.3, 0.0);
-	glEnd();
-
-	glPushMatrix();
-	glTranslatef(-0.0967, 0, 0);
-	glRotatef(72, 0, 0, 1);
-	glBegin(GL_LINES);
-		glVertex2f(-0.3, 0.0);
-		glVertex2f(0.3, 0.0);
-	glEnd();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(0.0967, 0, 0);
-	glRotatef(-72, 0, 0, 1);
-	glBegin(GL_LINES);
-	glVertex2f(-0.3, 0.0);
-	glVertex2f(0.3, 0.0);
-	glEnd();
-	glPopMatrix();
-	
+	for (int i = 0; i < 5; i++) {
+		glRotatef(72, 0, 0, 1);
+		glBegin(GL_LINES);
+			glVertex2f(-0.1, 0.0);
+			glVertex2f(0, 0.3);
+			glVertex2f(0.1, 0.0);
+			glVertex2f(0, 0.3);
+		glEnd();
+	}
 	/*Копирование скрытого буфера на экран*/
 	glutSwapBuffers();
 }
